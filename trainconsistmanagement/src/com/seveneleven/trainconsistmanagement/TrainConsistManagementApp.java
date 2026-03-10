@@ -1,24 +1,31 @@
-// Use Case-03: Track Unique Bogie IDs
-// This class ensures that duplicate bogie IDs are not added into the train formation using HashSet.
+// Use Case-04: Maintain Ordered Bogie IDs 
+// HashSet does not preserve order.
+// A train consists must follow a physical sequence, so a LinkedList is used to maintain order
 // @author Developer
-// @version 3.0
+// @version 4.0
 
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
 public class TrainConsistManagementApp {
 	public static void main(String[] args) {
-		Set<String> bogieIDs = new HashSet<>();
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        bogieIDs.add("BG103");
-        bogieIDs.add("BG104");
-        
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        System.out.println("Bogie IDs After Insertion:");
-        System.out.println(bogieIDs);
-
+		List<String> trainConsist=new LinkedList<>();
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC");
+        trainConsist.add("Cargo");
+        trainConsist.add("Guard");
+        System.out.println("Initial train consist:");
+        System.out.println(trainConsist);
         System.out.println();
-        System.out.println("Duplicates are automatically ignored by HashSet");
+       
+        trainConsist.add(2,"Pantry Car");
+        System.out.println("After inserting Pantry Car at index 2:");
+        System.out.println(trainConsist);
+        System.out.println();
+        
+        trainConsist.removeFirst();
+        trainConsist.removeLast();
+        System.out.println("After removing first and last bogie:");
+        System.out.println(trainConsist);
 	}
 }
