@@ -1,19 +1,29 @@
-// Use Case-01:Initialize Train and Display Consist Summary
-// This class is the entry point for Train Consist Management App
-// Creates a list to store bogies, displays no of bogies and current state of train
+// Use Case-02:Add Passenger Bogies to Train
+// This class demonstrates how passenger bogies can be dynamically managed
+// We use an ArrayList
+// This maps CRUD operations using ArrayList
 // @author Developer
-// @version 1.0
+// @version 2.0
 
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
 public class TrainConsistManagementApp {
 	public static void main(String[] args) {
-		System.out.println("---Train Consist Management App---");
-		List<String> trainConsist=new ArrayList<>();
-		System.out.println("Train initialized successfully!");
-		System.out.println("Initial bogie count:"+trainConsist.size());
-		System.out.println("Current train consist:"+trainConsist);
-		System.out.println();
-		System.out.println("System ready for operations");
+		List<String> passengerBogies = new ArrayList<>();
+		passengerBogies.add("Sleeper");
+		passengerBogies.add("AC Chair");
+		passengerBogies.add("First Class");
+		System.out.println("After Adding Bogies:");
+		System.out.println("Passenger Bogies:" + passengerBogies + "\n");
+
+		passengerBogies.remove("AC Chair");
+		System.out.println("After Removing AC Chair:");
+		System.out.println("Passenger Bogies:"+passengerBogies+"\n");
+
+		boolean containsSleeper = passengerBogies.contains("Sleeper");
+		System.out.println("Checking if Sleeper exists:");
+		System.out.println("Contains Sleeper?:"+containsSleeper+"\n");
+
+		System.out.println("Final Train Passenger Consist:"+passengerBogies);
 	}
 }
