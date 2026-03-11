@@ -1,7 +1,7 @@
-// Use Case-09:Group Bogies by Type
-// Group passenger bogies by their type using Java Stream API and Collectors.groupingBy.
+// Use Case-10:Count Total Seats in Train
+// calculate the total seating capacity of all bogies combined using Java Stream API and Collectors.groupingBy
 // @author Developer
-// @version 9.0
+// @version 10.0
 
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
@@ -20,25 +20,18 @@ public class TrainConsistManagementApp {
 		}
 	}
 	public static void main(String[] args) {
-		List<Bogie> bogies=new ArrayList<>();
+		List<Bogie> bogies = new ArrayList<>();
 		bogies.add(new Bogie("Sleeper", 72));
 		bogies.add(new Bogie("AC Chair", 56));
 		bogies.add(new Bogie("First Class", 24));
-		bogies.add(new Bogie("Sleeper", 70));
-		bogies.add(new Bogie("AC Chair", 60));
+		bogies.add(new Bogie("General", 90));
 
 		System.out.println("Initial bogies\n");
 		for (Bogie b : bogies) {
 			System.out.println(b);
 		}
-		Map<String,List<Bogie>> groupedBogies=bogies.stream().collect(Collectors.groupingBy(b->b.name));
+		int totalSeats=bogies.stream().mapToInt(b->b.capacity).sum();
 
-		System.out.println("\nGrouped Bogies:");
-		for (Map.Entry<String,List<Bogie>>entry:groupedBogies.entrySet()){
-			System.out.println("\nBogie Type:"+entry.getKey());
-			for (Bogie b:entry.getValue()){
-				System.out.println(" Capacity->"+b.capacity);
-			}
-		}
+		System.out.println("\nTotal Seats in Train Formation:"+totalSeats);
 	}
 }
