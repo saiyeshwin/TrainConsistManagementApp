@@ -1,10 +1,11 @@
-// Use Case-07:  Sort Bogies by Capacity (Comparator)
-// We sort passenger bogies by using comparator
+// Use Case-08:  Filter Passenger Bogies Using Streams
+// Filters passenger bogies based on seating capacity using Java Streams
 // @author Developer
-// @version 7.0
+// @version 8.0
 
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
+import java.util.stream.Collectors;
 public class TrainConsistManagementApp {
 	static class Bogie{
 		String name;
@@ -24,16 +25,16 @@ public class TrainConsistManagementApp {
 		bogies.add(new Bogie("First Class",24));
 		bogies.add(new Bogie("Cargo",120));
 		bogies.add(new Bogie("AC Chair",56));
-		System.out.println("Before Sorting\n");
+		System.out.println("Initial bogies\n");
 		for (Bogie b : bogies) {
-            System.out.println(b);
-        }
-		System.out.println();
-		bogies.sort((b1,b2)->b1.capacity-b2.capacity);
-		System.out.println("After Sorting \n");
-		for (Bogie b : bogies) {
-            System.out.println(b);
-        }
+			System.out.println(b);
+		}
+		List<Bogie> filteredBogies=bogies.stream().filter(b -> b.capacity > 60).collect(Collectors.toList());
+
+		System.out.println("\nFiltered Bogies(Capacity>60):");
+		for (Bogie b:filteredBogies) {
+			System.out.println(b);
+		}
 		System.out.println();
 	}
 }
