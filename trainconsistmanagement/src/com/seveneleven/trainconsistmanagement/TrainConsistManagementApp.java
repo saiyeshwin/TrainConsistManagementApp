@@ -1,7 +1,7 @@
-// Use Case-08:  Filter Passenger Bogies Using Streams
-// Filters passenger bogies based on seating capacity using Java Streams
+// Use Case-09:Group Bogies by Type
+// Group passenger bogies by their type using Java Stream API and Collectors.groupingBy.
 // @author Developer
-// @version 8.0
+// @version 9.0
 
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
@@ -21,20 +21,24 @@ public class TrainConsistManagementApp {
 	}
 	public static void main(String[] args) {
 		List<Bogie> bogies=new ArrayList<>();
-		bogies.add(new Bogie("Sleeper",72));
-		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("Cargo",120));
-		bogies.add(new Bogie("AC Chair",56));
+		bogies.add(new Bogie("Sleeper", 72));
+		bogies.add(new Bogie("AC Chair", 56));
+		bogies.add(new Bogie("First Class", 24));
+		bogies.add(new Bogie("Sleeper", 70));
+		bogies.add(new Bogie("AC Chair", 60));
+
 		System.out.println("Initial bogies\n");
 		for (Bogie b : bogies) {
 			System.out.println(b);
 		}
-		List<Bogie> filteredBogies=bogies.stream().filter(b -> b.capacity > 60).collect(Collectors.toList());
+		Map<String,List<Bogie>> groupedBogies=bogies.stream().collect(Collectors.groupingBy(b->b.name));
 
-		System.out.println("\nFiltered Bogies(Capacity>60):");
-		for (Bogie b:filteredBogies) {
-			System.out.println(b);
+		System.out.println("\nGrouped Bogies:");
+		for (Map.Entry<String,List<Bogie>>entry:groupedBogies.entrySet()){
+			System.out.println("\nBogie Type:"+entry.getKey());
+			for (Bogie b:entry.getValue()){
+				System.out.println(" Capacity->"+b.capacity);
+			}
 		}
-		System.out.println();
 	}
 }
