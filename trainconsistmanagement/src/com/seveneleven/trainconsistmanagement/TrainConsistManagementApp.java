@@ -1,27 +1,17 @@
-// Use Case-16: Sort Passenger Bogies by Capacity (Bubble Sort)
-// Manual sorting of passenger bogie capacities using the Bubble Sort algorithm
+// Use Case-17: Sort Bogies Names Using Arrays.sort()
+// Sorting of bogie type names using inbuilt Arrays.sort()
 // @author Developer
-// @version 16.0
+// @version 17.0
 package com.seveneleven.trainconsistmanagement;
+import java.util.Arrays;
 public class TrainConsistManagementApp {
 	public static void main(String[] args){
-		int[] capacities= {72,56,24,70,60};
-		System.out.println("Original Capacities:");
-		for (int c:capacities) {
-			System.out.print(c+" ");
-		}
-		for (int i=0;i<capacities.length-1;i++){
-			for (int j=0;j<capacities.length-i-1;j++) {
-				if (capacities[j] > capacities[j+1]) {
-					int temp = capacities[j];
-					capacities[j]=capacities[j+1];
-					capacities[j+1]=temp;
-				}
-			}
-		}
-		System.out.println("\nSorted Capacities:");
-		for (int c : capacities) {
-			System.out.print(c + " ");
-		}
+		String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
+		System.out.println("Original Bogie Names:");
+		System.out.println(Arrays.toString(bogieNames));
+
+		Arrays.sort(bogieNames);
+		System.out.println("\nSorted Bogie Names:");
+		System.out.println(Arrays.toString(bogieNames));
 	}
 }
