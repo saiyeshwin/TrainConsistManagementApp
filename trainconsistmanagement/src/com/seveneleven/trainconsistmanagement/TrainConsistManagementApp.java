@@ -1,45 +1,27 @@
-// Use Case-15:Safe Cargo Assignment Using try-catch-finally
-// Prevents invalid passenger bogies from being created
-// If a bogie has zero or negative capacity, a custom exception is thrown.
+// Use Case-16: Sort Passenger Bogies by Capacity (Bubble Sort)
+// Manual sorting of passenger bogie capacities using the Bubble Sort algorithm
 // @author Developer
-// @version 15.0
+// @version 16.0
 package com.seveneleven.trainconsistmanagement;
 public class TrainConsistManagementApp {
-	static class CargoSafetyException extends RuntimeException {
-		public CargoSafetyException(String message) {
-			super(message);
+	public static void main(String[] args){
+		int[] capacities= {72,56,24,70,60};
+		System.out.println("Original Capacities:");
+		for (int c:capacities) {
+			System.out.print(c+" ");
 		}
-	}
-	static class GoodsBogie {
-		String shape;
-		String cargo;
-		GoodsBogie(String shape) {
-			this.shape = shape;
-		}
-		void assignCargo(String cargo) {
-			try {
-				if (shape.equals("Rectangular") && cargo.equals("Petroleum")) {
-					throw new CargoSafetyException("Unsafe cargo assignment!");
+		for (int i=0;i<capacities.length-1;i++){
+			for (int j=0;j<capacities.length-i-1;j++) {
+				if (capacities[j] > capacities[j+1]) {
+					int temp = capacities[j];
+					capacities[j]=capacities[j+1];
+					capacities[j+1]=temp;
 				}
-				this.cargo = cargo;
-				System.out.println("Cargo assigned successfully-" + cargo);
-				System.out.println("Cargo validation completed for "+shape+" bogie");
-			} 
-			catch (CargoSafetyException e) {
-				System.out.println("Error:"+ e.getMessage());
-				System.out.println("Cargo validation completed for " + shape + " bogie");
-			} 
-			finally {
-				System.out.println();
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-		GoodsBogie cylindrical = new GoodsBogie("Cylindrical");
-		cylindrical.assignCargo("Petroleum");
-
-		GoodsBogie rectangular = new GoodsBogie("Rectangular");
-		rectangular.assignCargo("Petroleum");
+		System.out.println("\nSorted Capacities:");
+		for (int c : capacities) {
+			System.out.print(c + " ");
+		}
 	}
 }
