@@ -1,17 +1,30 @@
-// Use Case-17: Sort Bogies Names Using Arrays.sort()
-// Sorting of bogie type names using inbuilt Arrays.sort()
+// Use Case-18:Linear Search for Bogie ID
+// Searching for a specific bogie ID using Linear Search algorithm.
 // @author Developer
-// @version 17.0
+// @version 18.0
 package com.seveneleven.trainconsistmanagement;
 import java.util.Arrays;
 public class TrainConsistManagementApp {
 	public static void main(String[] args){
-		String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
-		System.out.println("Original Bogie Names:");
-		System.out.println(Arrays.toString(bogieNames));
+		String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+		String searchId = "BG309";
+		System.out.println("Available Bogie IDs:");
+		for (String id : bogieIds) {
+			System.out.println(id);
+		}
 
-		Arrays.sort(bogieNames);
-		System.out.println("\nSorted Bogie Names:");
-		System.out.println(Arrays.toString(bogieNames));
+		boolean found = false;
+		for (String id : bogieIds) {
+			if (id.equals(searchId)) {
+				found = true;
+				break;
+			}
+		}
+		if(found){
+			System.out.println("\nBogie "+searchId+ " found in train consist");
+		} 
+		else{
+			System.out.println("\nBogie "+searchId+" not found in train consist");
+		}
 	}
 }
