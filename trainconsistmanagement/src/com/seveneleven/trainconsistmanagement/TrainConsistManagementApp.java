@@ -1,30 +1,40 @@
-// Use Case-18:Linear Search for Bogie ID
-// Searching for a specific bogie ID using Linear Search algorithm.
+// Use Case-19:Binary Search for Bogie ID
+// Searching for a specific bogie ID using Binary Search algorithm.
 // @author Developer
-// @version 18.0
+// @version 19.0
 package com.seveneleven.trainconsistmanagement;
 import java.util.Arrays;
 public class TrainConsistManagementApp {
 	public static void main(String[] args){
 		String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
-		String searchId = "BG309";
-		System.out.println("Available Bogie IDs:");
+		Arrays.sort(bogieIds);
+		String key = "BG309";
+		System.out.println("Sorted Bogie IDs:");
 		for (String id : bogieIds) {
 			System.out.println(id);
 		}
-
+		int low = 0;
+		int high = bogieIds.length - 1;
 		boolean found = false;
-		for (String id : bogieIds) {
-			if (id.equals(searchId)) {
+		while (low <= high) {
+			int mid = (low + high) / 2;
+			int result = key.compareTo(bogieIds[mid]);
+			if (result == 0) {
 				found = true;
 				break;
+			} 
+			else if (result > 0) {
+				low = mid + 1;
+			} 
+			else {
+				high = mid - 1;
 			}
 		}
 		if(found){
-			System.out.println("\nBogie "+searchId+ " found in train consist");
+			System.out.println("\nBogie "+key+ " found in train consist");
 		} 
 		else{
-			System.out.println("\nBogie "+searchId+" not found in train consist");
+			System.out.println("\nBogie "+key+" not found in train consist");
 		}
 	}
 }
