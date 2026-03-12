@@ -1,47 +1,41 @@
-// Use Case-13:Performance Comparison (Loops vs Streams)
-// compares the performance of loop-based filtering versus stream-based filtering using System.nanoTime()
+// Use Case-14:Handle Invalid Bogie Capacity
+// Prevents invalid passenger bogies from being created
+// If a bogie has zero or negative capacity, a custom exception is thrown.
 // @author Developer
-// @version 13.0
+// @version 14.0
 package com.seveneleven.trainconsistmanagement;
 import java.util.*;
-import java.util.stream.Collectors;
+class InvalidCapacityException extends Exception {
+	public InvalidCapacityException(String message) {
+		super(message);
+	}
+}
 public class TrainConsistManagementApp {
 	static class Bogie {
 		String name;
 		int capacity;
-		Bogie(String name, int capacity) {
+		Bogie(String name, int capacity) throws InvalidCapacityException {
+			if (capacity<= 0) {
+				throw new InvalidCapacityException("Capacity must be greater than zero");
+			}
 			this.name = name;
 			this.capacity = capacity;
 		}
 		@Override
 		public String toString() {
-			return name +"->"+ capacity;
+			return name+"->"+capacity;
 		}
 	}
 
 	public static void main(String[] args) {
-		List<Bogie> bogies = new ArrayList<>();
-		bogies.add(new Bogie("Sleeper", 72));
-		bogies.add(new Bogie("AC Chair", 56));
-		bogies.add(new Bogie("First Class", 24));
-		bogies.add(new Bogie("General", 90));
-
-		long loopStart = System.nanoTime();
-		List<Bogie> loopFiltered = new ArrayList<>();
-		for (Bogie b:bogies) {
-			if (b.capacity>50) {
-				loopFiltered.add(b);
-			}
+		try {
+			Bogie sleeper = new Bogie("Sleeper",72);
+			System.out.println("Created Bogie:"+sleeper);
+			Bogie faulty = new Bogie("Cargo",-4);
+			System.out.println("Created Bogie:"+faulty);
+		} 
+		catch (InvalidCapacityException e) {
+			System.out.println("Error:" + e.getMessage());
 		}
-		long loopEnd = System.nanoTime();
-		long loopDuration=loopEnd-loopStart;
-
-		long streamStart = System.nanoTime();
-		List<Bogie> streamFiltered = bogies.stream().filter(b -> b.capacity > 50).collect(Collectors.toList());
-		long streamEnd = System.nanoTime();
-		long streamDuration = streamEnd - streamStart;
-
-		System.out.println("Loop Execution Time(ns):" +loopDuration);
-		System.out.println("Stream Execution Time(ns):"+streamDuration);
 	}
 }
