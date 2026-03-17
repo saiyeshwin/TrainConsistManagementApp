@@ -127,6 +127,3 @@ Implement multi-criteria and chained sorting.
 
 Implement advanced searching with multiple conditions.
 
-
-
-If you want next level polish, I can make this look like a **top-tier GitHub README (with TOC + setup + code snippets)**.
