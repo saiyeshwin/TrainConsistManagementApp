@@ -5,10 +5,6 @@
 
 It is a modular Java console application for managing train consists 
 
-
-
-# Use Cases
-
 ## UC-01: Initialize Train and Display Consist Summary
 
 Initialize the application and display the initial state of the train.
